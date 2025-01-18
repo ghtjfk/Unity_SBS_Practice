@@ -4,18 +4,14 @@ using UnityEngine;
 
 public class FirstScript : MonoBehaviour
 {
-    int hp = 90;
-
-    private void Start()
+    void Start()
     {
-        Debug.Log(2 < 5);
-        Debug.Log(5 == 5);
-        Debug.Log(6 == 5);
-        Debug.Log(7 != 5);
-        Debug.Log(7 != 7);
-        Debug.Log(3 <= 5);
-        Debug.Log(3 <= 3);
-        Debug.Log(4 >= 4);
-        Debug.Log(2 >= 4);
+        print(NextYear(2025));
+    }
+
+    int NextYear(int thisYear)
+    {
+        int nextYear = thisYear + 1;
+        return nextYear;
     }
 }
