@@ -3,40 +3,30 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class Weapon
-{
-    public string name;
-    public int damage;
-
-    public Weapon()
-    {
-        name = "Unknown";
-        damage = 10;
-    }
-
-    public Weapon(string name, int damage)
-    {
-        this.name = name;
-        this.damage = damage;
-    }
-}
 public class Player : MonoBehaviour
 {
-    public Weapon weapon;
+    public delegate void GameOverEvent();
+    public static event GameOverEvent OnGameOver;
 
-    public Player()
+    void Start()
     {
-        weapon = new Weapon();
-    }
-   
-    
-    public Player(string weaponName, int weaponDamage)
-    {
-        weapon = new Weapon(weaponName, weaponDamage);
+        Debug.Log("PlayerController: 'G' 버튼을 누르면 게임 오버입니다.");
     }
 
-    private void Start()
+    void Update()
     {
-        Debug.Log("Player's weapon: " + weapon.name + " with damage: " + weapon.damage);   
+        if (Input.GetKeyDown(KeyCode.G))
+        {
+            TriggerGameOver();
+        }
+    }
+
+    void TriggerGameOver()
+    {
+        Debug.Log("PlayerController: 게임 오버!");
+        if(OnGameOver != null)
+        {
+            OnGameOver();
+        }
     }
 }
